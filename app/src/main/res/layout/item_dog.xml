@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="dog"
+            type="com.dogs.model.DogBreed" />
+
+        <variable
+            name="listener"
+            type="com.dogs.view.DogClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{listener::onDogClick}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dogId"
+            android:text="@{String.valueOf(dog.uuid)}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dog_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            android:imageUrl="@{dog.imageUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dog_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@{dog.dogBreed}"
+            app:layout_constraintBottom_toTopOf="@+id/dog_life_span"
+            app:layout_constraintStart_toEndOf="@+id/dog_image"
+            app:layout_constraintTop_toTopOf="@+id/dog_image"
+            tools:text="Spyke" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dog_life_span"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@{dog.liveSpan}"
+            app:layout_constraintBottom_toBottomOf="@+id/dog_image"
+            app:layout_constraintStart_toEndOf="@+id/dog_image"
+            app:layout_constraintTop_toBottomOf="@+id/dog_name"
+            tools:text="life goes on" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
